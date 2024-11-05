@@ -1,0 +1,60 @@
+/* 
+* Names: Raymond Zhang
+* Program Name: Looping Lab
+* Date: 11/5/24
+* Extra: 
+*/
+#include <iostream>
+using namespace std;
+int main() {
+    // Program #1
+    printf("Program #1\n");
+    char quote[1000];
+    string quotes[7]; // Creates string array of max length 7
+    for (int i = 0; i < 7; i++) {
+        printf("Enter your motivational quote for Day #%d: ", i + 1);
+        scanf("%[^\n]%*c", quote); // Takes in a line as an input
+        quotes[i] = quote;
+    }
+    cout << "" << endl;
+    for (int i = 0; i < 7; i++) {
+        printf("Here is your motivational quote for Day #%d: %s\n", i + 1, quotes[i].c_str());
+    }
+    // Program #2
+    printf("Program #2\n");
+    int energy = 5;
+    int supplies = 0;
+    int choice;
+    int day = 1;
+    while (energy > 0 && supplies < 10) { // Loop runs until both conditions are met
+        printf("\nToday is Day #%d, what would you like to do today?\n1: Search for supplies (costs 1 energy, adds 1 supply)\n2: Rest (restores 2 energy, but does not add supplies)\nEnter the corresponding integer: ", day);
+        scanf("%d", &choice);
+        if (choice == 1) {
+            cout << "\nYou have chosen to search for supplies. You lose one energy and gain more supplies." << endl;
+            energy -= 1;
+            supplies += 1;
+        }
+        else if (choice == 2) {
+            cout << "\nYou have chosen to rest. You gain two energy and do not gain any supplies." << endl;
+            energy += 2;
+        }
+        else { // If user does not enter either choice
+            cout << "\nYou did not enter a valid option." << endl;
+            day -= 1;
+        }
+        printf("Current Energy: %d\nCurrent Amt of Supplies: %d\n", energy, supplies);
+        if (energy == 0) {
+            cout << "Unfortunately, since you no longer have any energy, you faint and pass away. Better luck next time!" << endl;
+            continue;
+        }
+        else if (supplies == 10) {
+            cout << "Fortunately, since you have gathered enough supplies you are able to return home to your family! Your survival indicates true willpower and dedication. Congratulations!" << endl;
+            continue;
+        }
+        day += 1;
+    } 
+    
+
+    // Program #3
+    return 0;
+}
