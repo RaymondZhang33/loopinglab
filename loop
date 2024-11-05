@@ -6,6 +6,7 @@
 */
 #include <iostream>
 using namespace std;
+#include <stdlib.h>
 int main() {
     // Program #1
     printf("Program #1\n");
@@ -48,13 +49,33 @@ int main() {
             continue;
         }
         else if (supplies == 10) {
-            cout << "Fortunately, since you have gathered enough supplies you are able to return home to your family! Your survival indicates true willpower and dedication. Congratulations!" << endl;
+            cout << "Fortunately, since you have gathered enough supplies you are able to return home to your family! Your survival indicates true willpower and dedication. Congratulations!\n" << endl;
             continue;
         }
         day += 1;
-    } 
-    
-
+    }
     // Program #3
+    printf("Program #3\n");
+    int code = rand() % 999 + 100;
+    int guess;
+    do {
+        char ans = 'Y';
+        printf("Guess the code (100-999): ");
+        scanf("&d", &guess);
+        if (guess == code) {
+            cout << "Correct! The box has now been unlocked." << endl;
+            ans = 'N';
+        }
+        else {
+            cout << "Wrong answer, would you like to try again? (Y/N): ";
+            scanf("&c", &ans);
+            if (ans == 'Y') {
+                continue;
+            }
+            else {
+                
+            }
+        }
+    } while (ans == 'Y');
     return 0;
 }
