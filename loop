@@ -30,12 +30,12 @@ int main() {
     while (energy > 0 && supplies < 10) { // Loop runs until both conditions are met
         printf("\nToday is Day #%d, what would you like to do today?\n1: Search for supplies (costs 1 energy, adds 1 supply)\n2: Rest (restores 2 energy, but does not add supplies)\nEnter the corresponding integer: ", day);
         scanf("%s", &choice);
-        if (choice == '1') {
+        if (choice[0]== '1') {
             cout << "\nYou have chosen to search for supplies. You lose one energy and gain more supplies." << endl;
             energy -= 1;
             supplies += 1;
         }
-        else if (choice == '2') {
+        else if (choice[0] == '2') {
             cout << "\nYou have chosen to rest. You gain two energy and do not gain any supplies." << endl;
             energy += 2;
         }
@@ -60,25 +60,29 @@ int main() {
     // Extra:
     srand(time(0));
     int code = rand() % 999 + 100;
-    
     char guess[1000];
     char ans = 'Y';
     do {
         printf("Guess the code (100-999): ");
         scanf("%s", &guess);
-        if (stoi(guess) == code) {
+        if (guess == to_string(code)) {
             cout << "Correct! The box has now been unlocked." << endl;
             ans = 'N';
         }
-        else {
+        else if (guess != to_string(code) && isdigit(guess[0])) {
             printf("Wrong answer, would you like to try again? (Y/N): ");
             cin >> ans;
             if (toupper(ans) == 'Y' || toupper(ans) == 'N') { // Extra
                 continue;
             }
             else {
-                cout << "You did not enter one of the choices given, so the program will automatically end." << endl;
+                cout << "You did not enter one of the choices given." << endl;
+                continue;
             }
+        }
+        else {
+            cout << "You did not enter one of the choices given." << endl;
+            continue;
         }
     } while (toupper(ans) == 'Y'); // Loop runs until the user answers with something other than y or Y
     return 0;
